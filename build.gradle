@@ -1,0 +1,46 @@
+
+apply plugin: "java"
+apply plugin: "idea"
+
+group "com.onlineshoppingsolutions"
+version "1.0-SNAPSHOT"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+jar {
+    version =  "0.1.0"
+
+    manifest {
+        attributes ("Main-Class": "com.onlineshoppingsolutions.elasticsearch.index.LoaderApplication",
+                "Implementation-Version": version)
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://maven.elasticsearch.org/releases"
+    }
+}
+
+dependencies {
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.21'
+    compile group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.21'
+    compile group: 'org.elasticsearch', name: 'elasticsearch', version: '2.4.1'
+    compile group: 'org.elasticsearch.plugin', name: 'shield', version: '2.4.1'
+    testCompile "junit:junit:4.12"
+}
+
+//create a single Jar with all dependencies
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Implementation-Title': 'Elastic search loader',
+                'Implementation-Version': version,
+                'Main-Class': 'com.onlineshoppingsolutions.elasticsearch.index.LoaderApplication'
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
