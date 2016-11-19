@@ -6,6 +6,7 @@ Example index creation and mock data loading to reproduce "None of the configure
 2. Run gradle fatJar
 3. In elasticsearch-indexer/build/libs java -jar elasticsearch-indexer-all-1.0-SNAPSHOT.jar "clusterId" "region" "username" "password" 3 10000 1000
 
+The cluster and the indexing code is running in the region: us-east-1. When I run the client in a different region to the cluster I have not been able to reproduce the problem
 
 AWS Redhat AMI:
 
