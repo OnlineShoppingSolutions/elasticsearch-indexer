@@ -3,7 +3,7 @@
 Example index creation and mock data loading to reproduce "None of the configured nodes were available" problem when indexing to Elastic Cloud when running code on AWS.
 
 1. Clone the repository
-2. Run gradle fatLar
+2. Run gradle fatJar
 3. In elasticsearch-indexer/build/libs java -jar elasticsearch-indexer-all-1.0-SNAPSHOT.jar "clusterId" "region" "username" "password" 3 10000 1000
 
 
